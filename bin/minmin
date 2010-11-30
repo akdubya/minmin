@@ -1,0 +1,37 @@
+#! /usr/bin/env node
+
+var minmin = require('minmin'),
+    opts   = require('opts'),
+    fs     = require('fs'),
+    net    = require('net');
+
+var options = [
+  { short       : 'c',
+    long        : 'compiler',
+    description : 'JavaScript compiler',
+    value       : true
+  },
+  { short       : 'o',
+    long        : 'output',
+    description : 'Output path',
+    value       : true
+  }
+];
+
+var args = [
+  { name: "paths" }
+];
+
+opts.parse(options, args, true);
+
+var paths = opts.args(),
+    output = opts.get("output"),
+    compiler = opts.get("compiler") || "uglify";
+
+if (!paths.length) { 
+  paths = null;
+} else if (paths.length === 1) {
+  paths = paths[0];
+}
+
+minmin.compile(compiler, paths, output, net.Stream({fd: 2}));

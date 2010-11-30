@@ -1,0 +1,10 @@
+{
+  "name"          : "minmin",
+  "version"       : "0.0.1",
+  "description"   : "JavaScript minification utilities",
+  "author"        : "Aleksander Williams",
+  "contributors"  : [],
+  "keywords"      : ["compiler", "minifier", "closure", "YUI", "UglifyJS"],
+  "main"          : "lib/minmin",
+  "bin"           : { "minmin" : "./bin/minmin" }
+}
